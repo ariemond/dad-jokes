@@ -7,6 +7,7 @@
     flex-direction: column;
     align-items: center;
     background-color: red;
+    overflow: hidden;
 
     &__stage {
         background-image: url('../../assets/images/stagebackground.jpg');
@@ -124,6 +125,12 @@
         top: 50%;
         left: -150%;
     }
+    &__type-header {
+        position: absolute;
+        top: 62%;
+        left: -58%;
+        color: white;
+    }
     &__web-button {
         color: black;
         background-color: white;
@@ -133,7 +140,7 @@
         font-weight: 700;        border-radius: 10px;
         border: none;
         position: absolute;
-        top: 80%;
+        top: 90%;
         left: -60%;
     }
     &__pun-button {
@@ -145,7 +152,7 @@
         font-weight: 700;        border-radius: 10px;
         border: none;
         position: absolute;
-        top: 80%;
+        top: 90%;
         left: -10%;
     }
     &__corny-button {
@@ -157,7 +164,7 @@
         font-weight: 700;        border-radius: 10px;
         border: none;
         position: absolute;
-        top: 65%;
+        top: 75%;
         left: -10%;
     }
     &__oneliner-button {
@@ -170,7 +177,7 @@
         border-radius: 10px;
         border: none;
         position: absolute;
-        top: 65%;
+        top: 75%;
         left: -60%;
     }
     &__button {

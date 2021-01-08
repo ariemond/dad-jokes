@@ -114,6 +114,7 @@ class Home extends React.Component {
                 <div className="home__joke-container">
                         <img className="home__jon" src={Jon} alt="jon"/>
                     <p className="home__joke">{this.state.joke.joke}</p>
+                    <h3 className="home__type-header">Select Joke By Type:</h3>
                     <form onSubmit={() => this.jokeType()} className="home__type-form" id="typeform">
                     <Link to={'/jokes/webdev'}><button type="submit" className="home__web-button">Webdev</button></Link>
                     <Link to={'/jokes/pun'}><button type="submit" className="home__pun-button">Puns</button></Link>
