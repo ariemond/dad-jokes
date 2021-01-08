@@ -24,12 +24,12 @@ app.get('/jokes/:type', (req, res) => {
 
     let jokeArray = jokes.filter((joke) => joke.type === jokeType);
 
-    let newJoke = jokeArray[Math.floor(Math.random()*jokeArray.length)];
+    let typeJoke = jokeArray[Math.floor(Math.random()*jokeArray.length)];
     
     let newJokeType = {
-        key: newJoke.id,
-        joke: newJoke.joke,
-        type: newJoke.type,
+        key: typeJoke.id,
+        joke: typeJoke.joke,
+        type: typeJoke.type,
     };
 
     res.send(newJokeType);

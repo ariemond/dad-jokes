@@ -22,15 +22,17 @@ import Piyush from '../../assets/images/piyush.png';
 import Chris from '../../assets/images/chris.png';
 import Mike from '../../assets/images/mike.png';
 import axios from 'axios';
-import Top from '../../assets/images/jontop.png';
-import Bottom from '../../assets/images/jonbottom.png';
-import Fade from 'react-reveal/Fade';
 import Up from '../../assets/images/thumbup.png';
 import Down from '../../assets/images/thumbdown.png';
 import Crickets from '../../assets/images/cricketshort.mp3';
 import Cheer from '../../assets/images/cheer.mp3';
-// import { response } from 'express';
 import {Link} from 'react-router-dom';
+import Ashley from '../../assets/images/ashley.png';
+import Lauren from '../../assets/images/lauren.png';
+import Hussein from '../../assets/images/hussein.png';
+import Nolan from '../../assets/images/nolan.png';
+import Eric from '../../assets/images/eric.png';
+
 
 
 const url = 'http://localhost:8087/jokes';
@@ -57,7 +59,6 @@ class Home extends React.Component {
     };
     
     newJoke = () => {
-
         axios.get(url)
         .then(response => {
           this.setState({
@@ -72,7 +73,7 @@ class Home extends React.Component {
     componentDidUpdate() {
 
       let {match: {params}} = this.props;
-      let type = params.type ? params.type : 'webdev';   
+      let type = params.type;   
   
       axios.get(url + '/' + type)             
       .then(res => {
@@ -91,7 +92,6 @@ class Home extends React.Component {
   jokeType = (e) => {
 
     e.preventDefault();
-    let type = e.target.type.value;
   }
     
 
@@ -105,10 +105,14 @@ class Home extends React.Component {
             <section className="home">
               <div className="home__stage">
                 <h1 className="home__header">Jon's Comedy Special</h1>
+                <img src={Lauren} className="home__educator home__educator1" alt=""/>
+                <img src={Nolan} className="home__educator home__educator2" alt=""/>
+                <img src={Eric} className="home__educator home__educator3" alt=""/>
+                <img src={Hussein} className="home__educator home__educator4" alt=""/>
+                <img src={Ashley} className="home__educator home__educator5" alt=""/>
+
                 <div className="home__joke-container">
-                  <Fade left>
                         <img className="home__jon" src={Jon} alt="jon"/>
-                    </Fade>
                     <p className="home__joke">{this.state.joke.joke}</p>
                     <form onSubmit={() => this.jokeType()} className="home__type-form" id="typeform">
                     <Link to={'/jokes/webdev'}><button type="submit" className="home__web-button">Webdev</button></Link>
@@ -116,14 +120,12 @@ class Home extends React.Component {
                     <Link to={'/jokes/corny'}><button type="submit" className="home__corny-button">Corny</button></Link>
                     <Link to={'/jokes/one-liner'}><button type="submit" className="home__oneliner-button">One-Liners</button></Link>
                     </form>
-
-                    <button onClick={() => this.newJoke()} className="home__button">RANDOM JOKE</button>
+                    <Link to={'/'}><button onClick={() => this.newJoke()}className="home__button">RANDOM JOKE</button></Link>
                     <img src={Up} className="home__up" alt="" onClick={() => cheer.play()}></img>
                     <img src={Down} className="home__down" alt="" onClick={() => crickets.play()}></img>
                 </div>
               </div>
               <div className="home__students">
-              <Fade up>
                 <div>
                     <img src={Ryan} className="home__student" alt=""/>
                     <img src={James} className="home__student" alt=""/>
@@ -146,11 +148,9 @@ class Home extends React.Component {
                     <img src={TJ} className="home__student" alt=""/>
                     <img src={David} className="home__student home__david" alt=""/>
                     </div>
-                    </Fade>
                 </div>
             </section>
         )
-
     }
 }
 
