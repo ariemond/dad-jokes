@@ -29,9 +29,9 @@ import Up from '../../assets/images/thumbup.png';
 import Down from '../../assets/images/thumbdown.png';
 import Crickets from '../../assets/images/cricketshort.mp3';
 import Cheer from '../../assets/images/cheer.mp3';
+// import { response } from 'express';
+import {Link} from 'react-router-dom';
 
-
-// const url = 'https://api.chucknorris.io/jokes/random'
 
 const url = 'http://localhost:8087/jokes';
 
@@ -54,13 +54,12 @@ class Home extends React.Component {
         .catch(err => {
           console.log(err)
         });
-    }
-
+    };
+    
     newJoke = () => {
 
         axios.get(url)
         .then(response => {
-            console.log(response.data)
           this.setState({
             joke: response.data
           })
@@ -69,6 +68,31 @@ class Home extends React.Component {
           console.log(err)
         });
     };
+
+    componentDidUpdate() {
+
+      let {match: {params}} = this.props;
+      let type = params.type ? params.type : 'webdev';   
+  
+      axios.get(url + '/' + type)             
+      .then(res => {
+        console.log(res)
+        if (type !== this.state.joke.type) {        
+          this.setState({
+              joke: res.data
+            });
+        }
+      })
+      .catch(err => {
+        console.log(err)
+      });;
+  };
+
+  jokeType = (e) => {
+
+    e.preventDefault();
+    let type = e.target.type.value;
+  }
     
 
     render(){
@@ -86,20 +110,13 @@ class Home extends React.Component {
                         <img className="home__jon" src={Jon} alt="jon"/>
                     </Fade>
                     <p className="home__joke">{this.state.joke.joke}</p>
-                    <form className="home__type-form" id="typeform">
-                      <label className="home__type-label" for="type"></label>
-                      <select className="home__type-select" name="type" id="type" form="typeform">
-                        <option value="webdev">Webdev</option>
-                        <option value="corny">Corny</option>
-                        <option value="one-liners">One-Liners</option>
-                        <option value="puns">Puns</option>
-                      </select>
-                      <button className="home__type-button">Search Type</button>
+                    <form onSubmit={() => this.jokeType()} className="home__type-form" id="typeform">
+                    <Link to={'/jokes/webdev'}><button type="submit" className="home__web-button">Webdev</button></Link>
+                    <Link to={'/jokes/pun'}><button type="submit" className="home__pun-button">Puns</button></Link>
+                    <Link to={'/jokes/corny'}><button type="submit" className="home__corny-button">Corny</button></Link>
+                    <Link to={'/jokes/one-liner'}><button type="submit" className="home__oneliner-button">One-Liners</button></Link>
                     </form>
-                    <form>
-                      <input className="home__search-input" type="text" name="search" placeholder="Search by keyword"></input>
-                      <button className="home__search-button">Search</button>
-                    </form>
+
                     <button onClick={() => this.newJoke()} className="home__button">RANDOM JOKE</button>
                     <img src={Up} className="home__up" alt="" onClick={() => cheer.play()}></img>
                     <img src={Down} className="home__down" alt="" onClick={() => crickets.play()}></img>
@@ -140,9 +157,7 @@ class Home extends React.Component {
 export default Home
 
 
-//let's have this as a space where jon can practice his dad jokes
-//he can either choose a random joke
-//or he can search by type of joke
-//hover over the students to make them laugh
-//random timeout for the students to laugh?
-//reaction button to get laughter or booing
+// <form>
+// <input className="home__search-input" type="text" name="search" placeholder="Search by keyword"></input>
+// <button className="home__search-button">Search</button>
+// </form>
