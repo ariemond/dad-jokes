@@ -24,6 +24,12 @@ import Mike from '../../assets/images/mike.png';
 import axios from 'axios';
 import Top from '../../assets/images/jontop.png';
 import Bottom from '../../assets/images/jonbottom.png';
+import Fade from 'react-reveal/Fade';
+import Up from '../../assets/images/thumbup.png';
+import Down from '../../assets/images/thumbdown.png';
+import Crickets from '../../assets/images/cricketshort.mp3';
+import Cheer from '../../assets/images/cheer.mp3';
+
 
 // const url = 'https://api.chucknorris.io/jokes/random'
 
@@ -50,7 +56,7 @@ class Home extends React.Component {
         });
     }
 
-    newJoke = () =>{
+    newJoke = () => {
 
         axios.get(url)
         .then(response => {
@@ -62,32 +68,57 @@ class Home extends React.Component {
         .catch(err => {
           console.log(err)
         });
-    }
+    };
     
 
     render(){
 
+      const cheer = new Audio(Cheer);
+      const crickets = new Audio(Crickets);
+
+
         return (
             <section className="home">
+              <div className="home__stage">
                 <h1 className="home__header">Jon's Comedy Special</h1>
                 <div className="home__joke-container">
+                  <Fade left>
                         <img className="home__jon" src={Jon} alt="jon"/>
+                    </Fade>
                     <p className="home__joke">{this.state.joke.joke}</p>
-                    <button onClick={() => this.newJoke()} className="home__button">NEW JOKE!</button>
+                    <form className="home__type-form" id="typeform">
+                      <label className="home__type-label" for="type"></label>
+                      <select className="home__type-select" name="type" id="type" form="typeform">
+                        <option value="webdev">Webdev</option>
+                        <option value="corny">Corny</option>
+                        <option value="one-liners">One-Liners</option>
+                        <option value="puns">Puns</option>
+                      </select>
+                      <button className="home__type-button">Search Type</button>
+                    </form>
+                    <form>
+                      <input className="home__search-input" type="text" name="search" placeholder="Search by keyword"></input>
+                      <button className="home__search-button">Search</button>
+                    </form>
+                    <button onClick={() => this.newJoke()} className="home__button">RANDOM JOKE</button>
+                    <img src={Up} className="home__up" alt="" onClick={() => cheer.play()}></img>
+                    <img src={Down} className="home__down" alt="" onClick={() => crickets.play()}></img>
                 </div>
-                
-                <div className="home__students">
+              </div>
+              <div className="home__students">
+              <Fade up>
+                <div>
                     <img src={Ryan} className="home__student" alt=""/>
                     <img src={James} className="home__student" alt=""/>
                     <img src={Ari} className="home__student" alt=""/>
                     <img src={Anjali} className="home__student" alt=""/>
                     <img src={Amy} className="home__student" alt=""/>
-                    <img src={Chris} className="home__student" alt=""/>
+                    <img src={Ian} className="home__student" alt=""/>
                     <img src={CJ} className="home__student" alt=""/>
                     <img src={Drake} className="home__student" alt=""/>
                     <img src={Edro} className="home__student" alt=""/>
                     <img src={Ethan} className="home__student" alt=""/>
-                    <img src={Ian} className="home__student" alt=""/>
+                    <img src={Chris} className="home__student" alt=""/>
                     <img src={Jas} className="home__student" alt=""/>
                     <img src={Jim} className="home__student" alt=""/>
                     <img src={Mark} className="home__student" alt=""/>
@@ -96,6 +127,9 @@ class Home extends React.Component {
                     <img src={Patti} className="home__student" alt=""/>
                     <img src={Piyush} className="home__student" alt=""/>
                     <img src={TJ} className="home__student" alt=""/>
+                    <img src={David} className="home__student home__david" alt=""/>
+                    </div>
+                    </Fade>
                 </div>
             </section>
         )
@@ -111,3 +145,4 @@ export default Home
 //or he can search by type of joke
 //hover over the students to make them laugh
 //random timeout for the students to laugh?
+//reaction button to get laughter or booing

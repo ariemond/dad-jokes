@@ -107,5 +107,35 @@
         "id": "1676878",
         "joke": "What do you call a fake noodle? An impasta.",
         "type": "pun"
+    },
+    {
+        "id": "1676dsfsf878",
+        "joke": "How do you comfort a JavaScript bug? You console it.",
+        "type": "webdev"
+    },
+    {
+        "id": "1676dsffdgfdgfdgsf878",
+        "joke": "When a JavaScript date has gone bad: 'Don't call me, I'll call back you. I Promise!'",
+        "type": "webdev"
+    },
+    {
+        "id": "1676dsffdgf8885dgfdgsf878",
+        "joke": "Why was the JavaScript developer sad? Because they didn’t Node how to Express himself.",
+        "type": "webdev"
+    },
+    {
+        "id": "1676dsfs56556f4v878",
+        "joke": "I'm not sharing my screen, because you should be able to see the reflection off my glasses!",
+        "type": "webdev"
+    },
+    {
+        "id": "1676ds878",
+        "joke": "Why did the child component have such great self-esteem? Because its parent kept giving it props!",
+        "type": "webdev"
+    },
+    {
+        "id": "1676gf8885dgfdgsf878",
+        "joke": "Why did the functional component feel lost? Because it didn’t know what state it was in!",
+        "type": "webdev"
     }
 ]
